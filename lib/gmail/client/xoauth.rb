@@ -26,10 +26,7 @@ module Gmail
            :domain => mail_domain,
            :user_name => username,
            :password => {
-             :consumer_key    => consumer_key,
-             :consumer_secret => consumer_secret,
-             :token           => token,
-             :token_secret    => secret
+             :token           => token
            },
            :authentication => :xoauth,
            :enable_starttls_auto => true
