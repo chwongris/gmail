@@ -1,5 +1,5 @@
 require 'gmail_xoauth'
-require 'pry'
+
 
 module Gmail
   module Client
@@ -12,7 +12,7 @@ module Gmail
       end
 
       def login(raise_errors=false)
-binding.pry
+
         @imap and @logged_in = (login = @imap.authenticate('XOAUTH2', username, @token)) && login.name == 'OK'
       rescue
         raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
