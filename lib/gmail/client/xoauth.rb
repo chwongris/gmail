@@ -5,10 +5,8 @@ module Gmail
     class XOAuth < Base
       attr_reader :token
 
-      def initialize(username, options={})
-        @token           = options.delete(:token)
-       
-        super(username, options)
+      def initialize(username, token)
+        super(username, token)
       end
 
       def login(raise_errors=false)
