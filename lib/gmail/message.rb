@@ -104,9 +104,6 @@ module Gmail
 
     # Move to trash / bin.
     def delete!
-      @mailbox.messages.delete(uid)
-      flag(:deleted)
-
       # For some, it's called "Trash", for others, it's called "Bin". Support both.
       trash =  @gmail.labels.exist?('[Gmail]/Bin') ? '[Gmail]/Bin' : '[Gmail]/Trash'
       move_to(trash) unless %w[[Gmail]/Spam [Gmail]/Bin [Gmail]/Trash].include?(@mailbox.name)
@@ -119,7 +116,7 @@ module Gmail
 
     # Move to given box and delete from others.
     def move_to(name, from=nil)
-      label(name, from)
+      label(name, from) && archive!
       delete! if !%w[[Gmail]/Bin [Gmail]/Trash].include?(name)
     end
     alias :move :move_to
